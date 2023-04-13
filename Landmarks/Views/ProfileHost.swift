@@ -13,6 +13,7 @@ struct ProfileHost: View {
     @State private var draftProfile = Profile.deafault
     @Environment(\.editMode) var editMode //`\.editMode`はSwiftUI内で定義されているenvironment key
     //var editModeを使用して，ビュー内で編集モードを管理できる．
+    @EnvironmentObject var modelData: ModelData
     
     var body: some View {
         
@@ -22,7 +23,14 @@ struct ProfileHost: View {
                 Spacer()
                 EditButton()
             }
-            ProfileSummary(profile: draftProfile)
+            
+            if editMode?.wrappedValue == .inactive {
+                //ProfileSummary(profile: draftProfile)
+                ProfileSummary(profile: modelData.profile)
+            } else {
+                Text("Profile Editor")
+            }
+            
         }
         .padding()
     }
