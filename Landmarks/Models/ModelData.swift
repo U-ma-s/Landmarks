@@ -9,8 +9,9 @@ import Foundation
 import Combine
 
 final class ModelData: ObservableObject {//観察対象のデータストアとなるオブジェクト(Observable Object?)？
-    @Published var landmarks: [Landmark] = load("landmarkData.json")//observable objectのプロパティをpublishedに
+    @Published var landmarks: [Landmark] = load("landmarkData.json")//observable objectのプロパティをpublishedにすることで変化があった場合に更新される？
     var hikes: [Hike] = load("hikeData.json")
+    @Published var profile = Profile.deafault
     
     var features: [Landmark] {
         landmarks.filter { $0.isFeatured } // isFeaturedがtrueのランドマークのみを含む配列を作成
