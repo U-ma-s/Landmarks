@@ -11,7 +11,7 @@ import Combine
 final class ModelData: ObservableObject {//観察対象のデータストアとなるオブジェクト(Observable Object?)？
     @Published var landmarks: [Landmark] = load("landmarkData.json")//observable objectのプロパティをpublishedにすることで変化があった場合に更新される？
     var hikes: [Hike] = load("hikeData.json")
-    @Published var profile = Profile.deafault////ModelDataクラスにprofileプロパティを追加し、ユーザーがプロファイルビューを解除した後でも持続するユーザープロファイルのインスタンスを含めるようにする
+    @Published var profile = Profile.default////ModelDataクラスにprofileプロパティを追加し、ユーザーがプロファイルビューを解除した後でも持続するユーザープロファイルのインスタンスを含めるようにする
     
     var features: [Landmark] {
         landmarks.filter { $0.isFeatured } // isFeaturedがtrueのランドマークのみを含む配列を作成
